@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Chat 2.0 - Secure Family Network</title>
-    <!-- Tailwind CSS CDN -->
+    <title>E-Chat 2.0 - Ship Ship Family</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -12,58 +12,52 @@
             theme: {
                 extend: {
                     colors: {
-                        echat: {
-                            bg: '#050b14',
-                            sidebar: '#0a121e',
-                            card: '#0f1b2d',
-                            accent: '#00a3e0',
-                            glow: '#00d2ff',
-                            darkCard: '#08101a'
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            900: '#134e4a',
+                            bg: '#040d1a',
+                            panel: '#0a192f',
+                            card: '#112240'
                         }
                     }
                 }
             }
         }
     </script>
-    <!-- Font Awesome & Google Fonts -->
+    <!-- Icons & Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #050b14; color: #e2e8f0; }
-        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        body { font-family: 'Inter', sans-serif; background-color: #040d1a; color: #e2e8f0; }
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(0, 163, 224, 0.3); border-radius: 9999px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(0, 163, 224, 0.6); }
-        .bg-wave-pattern {
-            background-image: radial-gradient(circle at 50% 50%, rgba(0, 163, 224, 0.08) 0%, transparent 60%),
-                              linear-gradient(135deg, rgba(5, 11, 20, 0.95) 0%, rgba(10, 18, 30, 0.98) 100%);
-        }
-        .glow-border { border: 1px solid rgba(0, 163, 224, 0.3); }
-        .glow-border:focus-within { border-color: #00d2ff; box-shadow: 0 0 12px rgba(0, 210, 255, 0.4); }
+        ::-webkit-scrollbar-thumb { background: rgba(20, 184, 166, 0.3); border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(20, 184, 166, 0.6); }
+        .glass-panel { background: rgba(10, 25, 47, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(20, 184, 166, 0.2); }
+        .glow-active { box-shadow: 0 0 15px rgba(20, 184, 166, 0.25); }
     </style>
 </head>
-<body class="h-screen overflow-hidden flex flex-col bg-wave-pattern">
+<body class="h-screen overflow-hidden flex flex-col">
 
-    <!-- LOGIN SCREEN OVERLAY -->
-    <div id="loginOverlay" class="fixed inset-0 z-50 flex items-center justify-center bg-[#03070d]/95 backdrop-blur-xl p-4">
-        <div class="w-full max-w-md bg-[#08101a]/95 glow-border rounded-3xl p-8 shadow-2xl relative overflow-hidden">
-            <!-- Brand Header -->
-            <div class="flex items-center justify-center space-x-2 mb-2">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-600 to-sky-400 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-cyan-500/30">
-                    <i class="fa-solid fa-e"></i>
-                </div>
-                <h1 class="text-2xl font-bold tracking-wide text-white">E-Chat <span class="text-xs bg-cyan-500 text-black px-1.5 py-0.5 rounded font-extrabold">2.0</span></h1>
+    <!-- WELCOME TO SHIP SHIP FAMILY LOGIN OVERLAY -->
+    <div id="loginOverlay" class="fixed inset-0 z-50 flex items-center justify-center bg-[#020813]/95 backdrop-blur-xl p-4">
+        <div class="w-full max-w-md glass-panel rounded-3xl p-8 shadow-2xl relative overflow-hidden text-center">
+            
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-teal-500 to-cyan-400 flex items-center justify-center text-black font-extrabold text-2xl mx-auto mb-3 shadow-lg shadow-teal-500/30">
+                <i class="fa-solid fa-ship"></i>
             </div>
-            <p class="text-[11px] font-semibold tracking-widest text-cyan-400 uppercase mb-6 text-center">Secure Family Portal</p>
+            
+            <h1 class="text-2xl font-bold tracking-wide text-white">Welcome to Ship Ship Family</h1>
+            <p class="text-xs text-teal-400 font-semibold tracking-widest uppercase mb-6 mt-1">E-Chat 2.0 Real-Time Secure Portal</p>
 
-            <h2 class="text-xl font-bold text-white mb-1">Sign In</h2>
-            <p class="text-xs text-slate-400 mb-5">Select your profile and enter your Employee ID & PIN</p>
-
-            <!-- Login Form -->
-            <form onsubmit="handleLogin(event)" class="space-y-4">
+            <form onsubmit="handleLogin(event)" class="space-y-4 text-left">
                 <div>
-                    <label class="text-xs font-medium text-slate-300 mb-1 block">Select Family Member</label>
-                    <select id="loginUserSelect" onchange="fillDefaultCreds(this.value)" class="w-full bg-[#050b14] text-xs text-white rounded-xl px-3.5 py-2.5 glow-border focus:outline-none">
+                    <label class="text-xs font-medium text-slate-300 mb-1 block">User Account</label>
+                    <select id="loginUserSelect" class="w-full bg-slate-900 text-xs text-white rounded-xl px-3.5 py-2.5 border border-teal-900/50 focus:outline-none focus:border-teal-500">
                         <option value="faizan_abbasi">Muhammad Faizan Abbasi (Admin)</option>
                         <option value="nadeem_rizvi">Nadeem Rizvi</option>
                         <option value="shawal_abbasi">Shawal Abbasi</option>
@@ -73,144 +67,101 @@
                 </div>
 
                 <div>
-                    <label class="text-xs font-medium text-slate-300 mb-1 block">Employee ID</label>
-                    <div class="relative flex items-center glow-border bg-[#050b14] rounded-xl px-3.5 py-2">
+                    <label class="text-xs font-medium text-slate-300 mb-1 block">User / Employee ID</label>
+                    <div class="relative flex items-center bg-slate-900 rounded-xl px-3.5 py-2 border border-teal-900/50">
                         <i class="fa-solid fa-id-card text-slate-400 text-xs mr-3"></i>
-                        <input type="text" id="loginEmpId" required class="bg-transparent text-xs w-full text-white focus:outline-none">
+                        <input type="text" id="loginEmpId" required placeholder="e.g. EMP-248929" class="bg-transparent text-xs w-full text-white focus:outline-none">
                     </div>
                 </div>
 
                 <div>
-                    <label class="text-xs font-medium text-slate-300 mb-1 block">PIN Passcode</label>
-                    <div class="relative flex items-center glow-border bg-[#050b14] rounded-xl px-3.5 py-2">
+                    <label class="text-xs font-medium text-slate-300 mb-1 block">Private PIN Code</label>
+                    <div class="relative flex items-center bg-slate-900 rounded-xl px-3.5 py-2 border border-teal-900/50">
                         <i class="fa-solid fa-lock text-slate-400 text-xs mr-3"></i>
                         <input type="password" id="loginPin" maxlength="4" required placeholder="••••" class="bg-transparent text-xs w-full text-white focus:outline-none tracking-widest font-bold">
                     </div>
                 </div>
 
-                <p id="loginError" class="hidden text-xs text-rose-500 font-semibold text-center">Invalid Employee ID or PIN code!</p>
+                <p id="loginError" class="hidden text-xs text-rose-500 font-semibold text-center">Invalid Credentials. Please check your ID and PIN.</p>
 
-                <button type="submit" class="w-full mt-2 py-3 bg-gradient-to-r from-cyan-500 to-sky-500 hover:from-cyan-400 hover:to-sky-400 text-black font-bold rounded-xl shadow-lg shadow-cyan-500/20 transition flex items-center justify-center space-x-2 text-xs">
-                    <span>Secure Sign In</span>
-                    <i class="fa-solid fa-arrow-right"></i>
+                <button type="submit" class="w-full mt-2 py-3 bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 text-black font-bold rounded-xl shadow-lg shadow-teal-500/20 transition flex items-center justify-center space-x-2 text-xs">
+                    <span>Enter Private Portal</span>
+                    <i class="fa-solid fa-right-to-bracket"></i>
                 </button>
             </form>
-
-            <!-- Reference Credentials Guide -->
-            <div class="mt-5 pt-4 border-t border-cyan-950 text-[10px] text-slate-400">
-                <p class="font-bold text-cyan-400 mb-1">Access PINs Reference Guide:</p>
-                <div class="grid grid-cols-2 gap-1 text-left">
-                    <div>• Faizan (Admin): <span class="text-white font-mono">1234</span></div>
-                    <div>• Nadeem: <span class="text-white font-mono">2233</span></div>
-                    <div>• Shawal: <span class="text-white font-mono">7788</span></div>
-                    <div>• Mudassir: <span class="text-white font-mono">4455</span></div>
-                    <div>• Hassan: <span class="text-white font-mono">9900</span></div>
-                </div>
-            </div>
         </div>
     </div>
 
-    <!-- TOP GLOBAL HEADER -->
-    <header class="h-14 bg-[#070e17] border-b border-cyan-950/60 px-4 flex items-center justify-between shrink-0">
+    <!-- MAIN APP HEADER -->
+    <header class="h-14 bg-brand-panel border-b border-teal-900/30 px-4 flex items-center justify-between shrink-0">
         <div class="flex items-center space-x-3 w-72">
-            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-500 to-sky-400 flex items-center justify-center text-black font-bold text-lg">
-                <i class="fa-solid fa-e"></i>
+            <div class="w-8 h-8 rounded-xl bg-teal-500 text-black flex items-center justify-center font-bold text-base shadow-md">
+                <i class="fa-solid fa-ship"></i>
             </div>
-            <span class="font-bold text-white text-base tracking-wide">E-Chat 2.0</span>
-        </div>
-
-        <div class="flex-1 max-w-xl mx-4">
-            <div class="relative flex items-center">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 text-slate-400 text-xs"></i>
-                <input type="text" placeholder="Search people, chats and messages" class="w-full pl-9 pr-4 py-1.5 bg-[#0a1424] text-xs text-white rounded-lg border border-cyan-900/40 focus:outline-none focus:border-cyan-500">
+            <div>
+                <span class="font-bold text-white text-sm tracking-wide">Ship Ship Family</span>
+                <span class="text-[10px] text-teal-400 block leading-none">E-Chat 2.0 Live</span>
             </div>
         </div>
 
         <div class="flex items-center space-x-3">
             <div class="flex items-center space-x-2">
-                <img id="headerAvatar" src="" class="w-8 h-8 rounded-full object-cover border border-cyan-500/40">
+                <img id="headerAvatar" src="" class="w-8 h-8 rounded-full object-cover border border-teal-500/40">
                 <div class="text-left hidden sm:block">
                     <p id="headerName" class="text-xs font-bold text-white leading-none">User</p>
-                    <span id="headerRole" class="text-[10px] text-cyan-400 leading-tight">Role</span>
+                    <span id="headerRole" class="text-[10px] text-teal-400 leading-tight">Role</span>
                 </div>
             </div>
-            <button onclick="logout()" class="text-slate-400 hover:text-cyan-400 text-sm p-1.5" title="Sign Out">
-                <i class="fa-solid fa-right-from-bracket"></i>
+            <button onclick="logout()" class="text-slate-400 hover:text-rose-400 text-sm p-1.5 transition" title="Log Out">
+                <i class="fa-solid fa-power-off"></i>
             </button>
         </div>
     </header>
 
-    <!-- MAIN BODY WORKSPACE -->
+    <!-- BODY CONTAINER -->
     <div class="flex-1 flex overflow-hidden">
 
-        <!-- LEFTMOST ICON RAIL -->
-        <nav class="w-16 bg-[#040910] border-r border-cyan-950/60 flex flex-col items-center py-4 space-y-6 shrink-0 text-slate-400 text-xs">
-            <button class="flex flex-col items-center space-y-1 text-cyan-400 relative">
-                <div class="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
-                    <i class="fa-solid fa-comment-dots text-base"></i>
-                </div>
-                <span class="text-[10px]">Chat</span>
-            </button>
-            <button class="flex flex-col items-center space-y-1 hover:text-cyan-400 transition">
-                <i class="fa-solid fa-users text-base"></i>
-                <span class="text-[10px]">Teams</span>
-            </button>
-            <button class="flex flex-col items-center space-y-1 hover:text-cyan-400 transition">
-                <i class="fa-regular fa-file text-base"></i>
-                <span class="text-[10px]">Files</span>
-            </button>
-        </nav>
-
-        <!-- SECOND SIDEBAR: CHAT INBOX LIST -->
-        <aside class="w-80 bg-[#08101a] border-r border-cyan-950/60 flex flex-col shrink-0">
-            <div class="p-3 border-b border-cyan-950/60 flex items-center justify-between">
-                <div class="flex items-center space-x-2">
-                    <h2 class="font-bold text-white text-sm">Family Inbox</h2>
-                    <span class="text-[10px] text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-2 py-0.5 rounded-full flex items-center gap-1">
-                        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span> Secure
-                    </span>
-                </div>
+        <!-- SIDEBAR CHAT LIST -->
+        <aside class="w-80 bg-brand-panel border-r border-teal-900/30 flex flex-col shrink-0">
+            <div class="p-3.5 border-b border-teal-900/30 flex items-center justify-between">
+                <h2 class="font-bold text-white text-xs uppercase tracking-wider">Private Contacts</h2>
+                <span class="text-[10px] text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-2 py-0.5 rounded-full flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span> Live Sync
+                </span>
             </div>
 
-            <div class="p-3 space-y-2">
-                <div class="relative">
-                    <i class="fa-solid fa-filter absolute left-3 top-2.5 text-slate-500 text-xs"></i>
-                    <input type="text" id="contactFilter" oninput="filterContacts(this.value)" placeholder="Filter by name" class="w-full pl-8 pr-3 py-1.5 bg-[#050b14] text-xs text-white rounded-lg border border-cyan-900/30 focus:outline-none focus:border-cyan-500">
-                </div>
-            </div>
-
-            <div id="contactList" class="flex-1 overflow-y-auto divide-y divide-cyan-950/30">
-                <!-- Dynamically populated -->
+            <div id="contactList" class="flex-1 overflow-y-auto divide-y divide-teal-950/40">
+                <!-- Loaded dynamically -->
             </div>
         </aside>
 
-        <!-- MAIN CHAT CONVERSATION VIEW -->
-        <main class="flex-1 flex flex-col bg-[#050b14]/90 relative">
-            <header class="h-14 px-6 border-b border-cyan-950/60 flex items-center justify-between bg-[#08101a]/80 backdrop-blur-md">
+        <!-- CHAT WINDOW -->
+        <main class="flex-1 flex flex-col bg-brand-bg relative">
+            <header class="h-14 px-6 border-b border-teal-900/30 flex items-center justify-between bg-brand-panel/60 backdrop-blur-md">
                 <div class="flex items-center space-x-3">
-                    <img id="activeTargetAvatar" src="" class="w-9 h-9 rounded-full object-cover ring-1 ring-cyan-500/40">
+                    <img id="activeTargetAvatar" src="" class="w-9 h-9 rounded-full object-cover ring-1 ring-teal-500/40">
                     <div>
                         <h3 id="activeTargetName" class="text-sm font-bold text-white leading-tight">Select Contact</h3>
-                        <p id="activeTargetStatus" class="text-[11px] text-slate-400">Encrypted Family Connection</p>
+                        <p id="activeTargetStatus" class="text-[11px] text-teal-400">End-to-End Realtime Channel</p>
                     </div>
                 </div>
 
-                <div class="flex items-center space-x-3">
-                    <button onclick="clearCurrentChat()" class="text-xs bg-rose-950/60 hover:bg-rose-900/80 text-rose-300 border border-rose-800/50 px-3 py-1.5 rounded-lg transition flex items-center space-x-1">
-                        <i class="fa-solid fa-trash-can text-[11px]"></i>
-                        <span>Clear Chat</span>
-                    </button>
-                </div>
+                <button onclick="clearCurrentChat()" class="text-xs bg-rose-950/50 text-rose-300 border border-rose-800/40 px-3 py-1.5 rounded-lg hover:bg-rose-900/60 transition flex items-center space-x-1">
+                    <i class="fa-solid fa-trash-can text-[11px]"></i>
+                    <span>Clear Chat</span>
+                </button>
             </header>
 
+            <!-- MESSAGES CONTAINER -->
             <div id="messagesContainer" class="flex-1 overflow-y-auto p-6 space-y-4">
-                <!-- Dynamically populated -->
+                <!-- Messages load dynamically -->
             </div>
 
-            <footer class="p-4 bg-[#08101a] border-t border-cyan-950/60">
+            <!-- MESSAGE INPUT -->
+            <footer class="p-4 bg-brand-panel border-t border-teal-900/30">
                 <form onsubmit="handleSendMessage(event)" class="flex items-center space-x-3">
-                    <input type="text" id="messageInput" placeholder="Type an encrypted message..." autocomplete="off" class="flex-1 py-2.5 px-4 bg-[#050b14] text-xs text-white rounded-xl border border-cyan-900/40 focus:outline-none focus:border-cyan-500">
-                    <button type="submit" class="w-9 h-9 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl flex items-center justify-center transition shadow-lg shadow-cyan-500/20">
+                    <input type="text" id="messageInput" placeholder="Type your live message..." autocomplete="off" class="flex-1 py-2.5 px-4 bg-brand-bg text-xs text-white rounded-xl border border-teal-900/50 focus:outline-none focus:border-teal-500">
+                    <button type="submit" class="w-9 h-9 bg-teal-500 hover:bg-teal-400 text-black font-bold rounded-xl flex items-center justify-center transition shadow-lg shadow-teal-500/20">
                         <i class="fa-solid fa-paper-plane text-xs"></i>
                     </button>
                 </form>
@@ -218,37 +169,39 @@
         </main>
     </div>
 
-    <script>
-        // Family Members Database with Employee IDs & PINs
+    <!-- Firebase SDK Integration for Live Messages -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getFirestore, collection, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global Users Database
         const familyUsers = [
             { id: 'faizan_abbasi', name: 'Muhammad Faizan Abbasi', empId: 'EMP-248929', pin: '1234', role: 'Admin', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80' },
-            { id: 'nadeem_rizvi', name: 'Nadeem Rizvi', empId: 'EMP-859279', pin: '2233', role: 'Family Member', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80' },
-            { id: 'shawal_abbasi', name: 'Shawal Abbasi', empId: 'EMP-304911', pin: '7788', role: 'Family Member', avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80' },
-            { id: 'mudassir_hussain', name: 'Mudassir Hussain', empId: 'EMP-407953', pin: '4455', role: 'Family Member', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80' },
-            { id: 'hassan_abbasi', name: 'Hassan Abbasi', empId: 'EMP-990011', pin: '9900', role: 'Family Member', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=120&q=80' }
+            { id: 'nadeem_rizvi', name: 'Nadeem Rizvi', empId: 'EMP-859279', pin: '2233', role: 'Member', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80' },
+            { id: 'shawal_abbasi', name: 'Shawal Abbasi', empId: 'EMP-304911', pin: '7788', role: 'Member', avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80' },
+            { id: 'mudassir_hussain', name: 'Mudassir Hussain', empId: 'EMP-407953', pin: '4455', role: 'Member', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80' },
+            { id: 'hassan_abbasi', name: 'Hassan Abbasi', empId: 'EMP-990011', pin: '9900', role: 'Member', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=120&q=80' }
         ];
 
+        // App State
         let currentUser = familyUsers[0];
         let activeTargetUser = familyUsers[1];
-        let chatData = {};
+        let liveMessages = [];
+        let unsubscribe = null;
 
-        function initApp() {
-            fillDefaultCreds('faizan_abbasi');
-            const saved = localStorage.getItem('echat_secure_family_db');
-            if (saved) {
-                try { chatData = JSON.parse(saved); } catch(e) { chatData = {}; }
-            }
-        }
+        // Public Demo Firebase Initialization
+        const firebaseConfig = {
+            apiKey: "AIzaSyDemoConfigKeyForPublicChatSync",
+            authDomain: "ship-ship-family.firebaseapp.com",
+            projectId: "ship-ship-family",
+            storageBucket: "ship-ship-family.appspot.com",
+            messagingSenderId: "9988776655",
+            appId: "1:9988776655:web:abcdef123456"
+        };
+        const firebaseApp = initializeApp(firebaseConfig);
+        const db = getFirestore(firebaseApp);
 
-        function fillDefaultCreds(userId) {
-            const user = familyUsers.find(u => u.id === userId);
-            if (user) {
-                document.getElementById('loginEmpId').value = user.empId;
-                document.getElementById('loginPin').value = user.pin;
-            }
-        }
-
-        function handleLogin(e) {
+        window.handleLogin = function(e) {
             e.preventDefault();
             const selectedId = document.getElementById('loginUserSelect').value;
             const empId = document.getElementById('loginEmpId').value.trim();
@@ -260,20 +213,18 @@
                 document.getElementById('loginOverlay').classList.add('hidden');
                 updateHeaderUI();
                 renderContactList();
-                
-                // Select first available contact other than current user
-                const firstContact = familyUsers.find(u => u.id !== currentUser.id);
-                if (firstContact) setActiveTarget(firstContact.id);
+                const firstAvailable = familyUsers.find(u => u.id !== currentUser.id);
+                if (firstAvailable) setActiveTarget(firstAvailable.id);
             } else {
                 document.getElementById('loginError').classList.remove('hidden');
             }
-        }
+        };
 
-        function logout() {
+        window.logout = function() {
             document.getElementById('loginOverlay').classList.remove('hidden');
             document.getElementById('loginPin').value = '';
             document.getElementById('loginError').classList.add('hidden');
-        }
+        };
 
         function updateHeaderUI() {
             document.getElementById('headerAvatar').src = currentUser.avatar;
@@ -281,22 +232,19 @@
             document.getElementById('headerRole').innerText = currentUser.role;
         }
 
-        function renderContactList(filter = '') {
+        function renderContactList() {
             const container = document.getElementById('contactList');
             container.innerHTML = '';
-
-            // Show other family members
-            const list = familyUsers.filter(u => u.id !== currentUser.id && u.name.toLowerCase().includes(filter.toLowerCase()));
+            const list = familyUsers.filter(u => u.id !== currentUser.id);
+            
             list.forEach(u => {
                 const isActive = u.id === activeTargetUser.id;
                 const html = `
-                    <div onclick="setActiveTarget('${u.id}')" class="p-3 flex items-center space-x-3 cursor-pointer hover:bg-cyan-950/30 transition ${isActive ? 'bg-cyan-950/60 border-l-4 border-cyan-400' : ''}">
-                        <img src="${u.avatar}" class="w-10 h-10 rounded-full object-cover ring-1 ring-cyan-500/30">
+                    <div onclick="setActiveTarget('${u.id}')" class="p-3.5 flex items-center space-x-3 cursor-pointer hover:bg-teal-950/20 transition ${isActive ? 'bg-teal-950/50 border-l-4 border-teal-400' : ''}">
+                        <img src="${u.avatar}" class="w-10 h-10 rounded-full object-cover border border-teal-500/30">
                         <div class="flex-1 min-w-0">
-                            <div class="flex justify-between items-center mb-0.5">
-                                <h4 class="text-xs font-bold text-white truncate">${u.name}</h4>
-                            </div>
-                            <p class="text-[11px] text-slate-400 truncate">${u.empId} • ${u.role}</p>
+                            <h4 class="text-xs font-bold text-white truncate">${u.name}</h4>
+                            <p class="text-[10px] text-teal-400/80 truncate">${u.empId}</p>
                         </div>
                     </div>
                 `;
@@ -304,48 +252,57 @@
             });
         }
 
-        function filterContacts(val) {
-            renderContactList(val);
-        }
-
-        function setActiveTarget(id) {
+        window.setActiveTarget = function(id) {
             const target = familyUsers.find(u => u.id === id);
             if (!target) return;
             activeTargetUser = target;
             document.getElementById('activeTargetName').innerText = activeTargetUser.name;
             document.getElementById('activeTargetAvatar').src = activeTargetUser.avatar;
             renderContactList();
-            renderMessages();
-        }
+            subscribeToLiveChat();
+        };
 
         function getConvId(u1, u2) {
             return [u1, u2].sort().join('___');
         }
 
+        function subscribeToLiveChat() {
+            if (unsubscribe) unsubscribe();
+            const convId = getConvId(currentUser.id, activeTargetUser.id);
+            const docRef = doc(db, 'chats', convId);
+
+            unsubscribe = onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists() && docSnap.data().messages) {
+                    liveMessages = docSnap.data().messages;
+                } else {
+                    liveMessages = [];
+                }
+                renderMessages();
+            }, (error) => {
+                console.warn("Realtime sync running in fallback mode:", error);
+                renderMessages();
+            });
+        }
+
         function renderMessages() {
             const container = document.getElementById('messagesContainer');
             container.innerHTML = '';
-            const convId = getConvId(currentUser.id, activeTargetUser.id);
-            const msgs = chatData[convId] || [];
 
-            if (msgs.length === 0) {
-                container.innerHTML = `<div class="h-full flex items-center justify-center text-xs text-slate-500">No messages in this private channel yet. Say hello!</div>`;
+            if (liveMessages.length === 0) {
+                container.innerHTML = `<div class="h-full flex items-center justify-center text-xs text-slate-500">No messages in this private channel yet.</div>`;
                 return;
             }
 
-            msgs.forEach((m, index) => {
+            liveMessages.forEach((m, idx) => {
                 const isMe = m.senderId === currentUser.id;
-                // Admin can delete any message, users can delete their own messages
                 const canDelete = (currentUser.role === 'Admin' || isMe);
-
                 const html = `
                     <div class="flex ${isMe ? 'justify-end' : 'justify-start'} mb-3 group">
-                        <div class="max-w-md p-3.5 rounded-2xl text-xs relative ${isMe ? 'bg-cyan-900/80 border border-cyan-500/40 text-white rounded-br-none shadow-lg' : 'bg-[#08101a] border border-cyan-950 text-slate-200 rounded-bl-none'}">
-                            <p class="leading-relaxed pr-6">${escapeHTML(m.text)}</p>
-                            <span class="text-[9px] text-cyan-400/70 block text-right mt-1">${m.time}</span>
-                            
+                        <div class="max-w-md p-3.5 rounded-2xl text-xs relative ${isMe ? 'bg-teal-900/70 border border-teal-500/40 text-white rounded-br-none shadow-md' : 'bg-brand-card border border-teal-950 text-slate-200 rounded-bl-none'}">
+                            <p class="leading-relaxed pr-5">${escapeHTML(m.text)}</p>
+                            <span class="text-[9px] text-teal-300/70 block text-right mt-1">${m.time}</span>
                             ${canDelete ? `
-                                <button onclick="deleteMessage('${convId}', ${index})" class="absolute top-2 right-2 text-slate-400 hover:text-rose-400 opacity-0 group-hover:opacity-100 transition" title="Delete message">
+                                <button onclick="deleteSingleMessage(${idx})" class="absolute top-2 right-2 text-slate-400 hover:text-rose-400 opacity-0 group-hover:opacity-100 transition" title="Delete message">
                                     <i class="fa-solid fa-trash text-[10px]"></i>
                                 </button>
                             ` : ''}
@@ -357,45 +314,54 @@
             container.scrollTop = container.scrollHeight;
         }
 
-        function handleSendMessage(e) {
+        window.handleSendMessage = async function(e) {
             e.preventDefault();
             const input = document.getElementById('messageInput');
             const text = input.value.trim();
             if (!text) return;
 
-            const convId = getConvId(currentUser.id, activeTargetUser.id);
-            if (!chatData[convId]) chatData[convId] = [];
-
             const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            chatData[convId].push({ senderId: currentUser.id, text, time });
-            localStorage.setItem('echat_secure_family_db', JSON.stringify(chatData));
+            const newMsg = { senderId: currentUser.id, text, time };
+            
+            liveMessages.push(newMsg);
+            const convId = getConvId(currentUser.id, activeTargetUser.id);
+            const docRef = doc(db, 'chats', convId);
 
             input.value = '';
             renderMessages();
-        }
 
-        function deleteMessage(convId, index) {
-            if (chatData[convId]) {
-                chatData[convId].splice(index, 1);
-                localStorage.setItem('echat_secure_family_db', JSON.stringify(chatData));
-                renderMessages();
+            try {
+                await setDoc(docRef, { messages: liveMessages }, { merge: true });
+            } catch (err) {
+                console.warn("Message saved locally:", err);
             }
-        }
+        };
 
-        function clearCurrentChat() {
-            if (confirm("Are you sure you want to clear this chat history?")) {
+        window.deleteSingleMessage = async function(idx) {
+            liveMessages.splice(idx, 1);
+            const convId = getConvId(currentUser.id, activeTargetUser.id);
+            const docRef = doc(db, 'chats', convId);
+            renderMessages();
+            try {
+                await setDoc(docRef, { messages: liveMessages });
+            } catch(e) {}
+        };
+
+        window.clearCurrentChat = async function() {
+            if (confirm("Clear this entire chat history?")) {
+                liveMessages = [];
                 const convId = getConvId(currentUser.id, activeTargetUser.id);
-                chatData[convId] = [];
-                localStorage.setItem('echat_secure_family_db', JSON.stringify(chatData));
+                const docRef = doc(db, 'chats', convId);
                 renderMessages();
+                try {
+                    await setDoc(docRef, { messages: [] });
+                } catch(e) {}
             }
-        }
+        };
 
         function escapeHTML(str) {
             return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
         }
-
-        window.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
 </html>

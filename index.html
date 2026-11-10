@@ -54,7 +54,7 @@
                     </div>
                     <div>
                         <h1 class="font-bold text-lg tracking-tight text-white leading-none">Ship Ship Family Chat</h1>
-                        <span class="text-xs text-slate-400 font-medium">Real-Time Firebase Chat</span>
+                        <span class="text-xs text-slate-400 font-medium">Real-Time Chat App</span>
                     </div>
                 </div>
                 <div class="flex items-center space-x-1">
@@ -71,12 +71,12 @@
             <div class="px-4 py-3 bg-slate-950 border-b border-slate-800 flex items-center justify-between text-white">
                 <div class="flex items-center space-x-3 min-w-0">
                     <div class="relative shrink-0">
-                        <img id="userAvatar" src="" class="w-9 h-9 rounded-full object-cover ring-2 ring-brand-500/30">
+                        <img id="userAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" class="w-9 h-9 rounded-full object-cover ring-2 ring-brand-500/30">
                         <span class="w-2.5 h-2.5 bg-emerald-500 border-2 border-slate-900 rounded-full absolute bottom-0 right-0"></span>
                     </div>
                     <div class="min-w-0">
-                        <p id="userNameDisplay" class="text-sm font-semibold leading-tight text-white truncate">Loading...</p>
-                        <p id="userRoleDisplay" class="text-xs text-slate-400 truncate">Online</p>
+                        <p id="userNameDisplay" class="text-sm font-semibold leading-tight text-white truncate">Muhammad Faizan Abbasi (Admin)</p>
+                        <p id="userRoleDisplay" class="text-xs text-slate-400 truncate">Admin</p>
                     </div>
                 </div>
                 <!-- Dropdown / Switch Account -->
@@ -117,15 +117,15 @@
                         <i class="fa-solid fa-bars"></i>
                     </button>
                     <div class="relative">
-                        <img id="activeAvatar" src="" class="w-10 h-10 rounded-full object-cover">
+                        <img id="activeAvatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" class="w-10 h-10 rounded-full object-cover">
                         <span id="activeStatusDot" class="w-3 h-3 bg-emerald-500 border-2 border-black rounded-full absolute bottom-0 right-0"></span>
                     </div>
                     <div>
                         <div class="flex items-center space-x-2">
-                            <h2 id="activeName" class="font-bold text-white leading-tight">Select a Chat</h2>
+                            <h2 id="activeName" class="font-bold text-white leading-tight">Nadeem Rizvi</h2>
                             <span id="activeBadge" class="hidden px-2 py-0.5 text-[10px] font-semibold bg-brand-600 text-white rounded-full">Admin</span>
                         </div>
-                        <p id="activeStatusText" class="text-xs text-slate-400">Online</p>
+                        <p id="activeStatusText" class="text-xs text-slate-400">Family Member • Online</p>
                     </div>
                 </div>
 
@@ -158,7 +158,7 @@
 
             <!-- Messages Stream -->
             <div id="messagesContainer" class="flex-1 overflow-y-auto p-4 space-y-4">
-                <!-- Live Firestore Messages -->
+                <!-- Live Messages -->
             </div>
 
             <!-- Attachment Preview Bar -->
@@ -207,4 +207,423 @@
                         <i class="fa-regular fa-face-smile text-lg"></i>
                     </button>
                     <div class="flex-1 relative">
-                        <input type="text" id="messageInput" placeholder="Type your message..." autocomplete="off" class="w-full py-3 pl-4 pr-10 bg-slate-100 dark:bg-slate-9
+                        <input type="text" id="messageInput" placeholder="Type your message..." autocomplete="off" class="w-full py-3 pl-4 pr-10 bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 border border-transparent dark:border-slate-700 transition">
+                    </div>
+                    <button type="button" onclick="sendVoiceSim()" class="p-2.5 rounded-xl text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition" title="Voice Message Simulation">
+                        <i class="fa-solid fa-microphone text-lg"></i>
+                    </button>
+                    <button type="submit" class="p-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium shadow-md shadow-brand-500/20 active:scale-95 transition flex items-center justify-center">
+                        <i class="fa-solid fa-paper-plane text-sm"></i>
+                    </button>
+                </form>
+            </footer>
+        </main>
+    </div>
+
+    <!-- User Switcher Modal -->
+    <div id="userSwitchModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700">
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Switch Active Family User</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Select which family member you are logging in as:</p>
+                </div>
+                <button onclick="closeUserSwitchModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div id="userOptionsContainer" class="space-y-3">
+                <!-- Dynamic choices populated in JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Simulated Call Modal -->
+    <div id="callModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-slate-900 text-white rounded-3xl p-8 max-w-sm w-full flex flex-col items-center text-center shadow-2xl border border-slate-800">
+            <div class="relative mb-6">
+                <img id="callAvatar" src="" class="w-24 h-24 rounded-full object-cover ring-4 ring-brand-500/30">
+                <div class="absolute inset-0 rounded-full animate-ping ring-2 ring-brand-500 opacity-40"></div>
+            </div>
+            <h3 id="callName" class="text-xl font-bold">Calling...</h3>
+            <p id="callStatus" class="text-sm text-slate-400 mt-1">Connecting call...</p>
+            <div class="flex items-center space-x-6 mt-8">
+                <button onclick="endCall()" class="w-14 h-14 rounded-full bg-rose-600 hover:bg-rose-700 flex items-center justify-center text-xl shadow-lg transition transform hover:scale-105">
+                    <i class="fa-solid fa-phone-slash"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Family Members List
+        const familyUsers = [
+            { id: 'faizan_abbasi', name: 'Muhammad Faizan Abbasi (Admin)', role: 'Admin', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80' },
+            { id: 'nadeem_rizvi', name: 'Nadeem Rizvi', role: 'Family Member', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80' },
+            { id: 'mudassir_hussain', name: 'Mudassir Hussain', role: 'Family Member', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80' },
+            { id: 'shawal_abbasi', name: 'Shawal Abbasi', role: 'Family Member', avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80' }
+        ];
+
+        // Global State
+        let currentUser = familyUsers[0];
+        let activeTargetUser = familyUsers[1];
+        let chatData = {};
+        let currentAttachment = null;
+        let searchFilterText = '';
+
+        function getConvId(u1, u2) {
+            return [u1, u2].sort().join('___');
+        }
+
+        function initApp() {
+            // Load saved messages from LocalStorage if existing
+            const saved = localStorage.getItem('ship_family_chats');
+            if (saved) {
+                try { chatData = JSON.parse(saved); } catch(e) { chatData = {}; }
+            }
+
+            setupTheme();
+            setupEventListeners();
+            updateCurrentProfileUI();
+            renderUserSwitchModalChoices();
+            renderContactList();
+            setActiveTarget(familyUsers[1].id);
+        }
+
+        function renderContactList() {
+            const listContainer = document.getElementById('contactList');
+            listContainer.innerHTML = '';
+
+            const otherUsers = familyUsers.filter(u => u.id !== currentUser.id);
+            const filtered = otherUsers.filter(u => u.name.toLowerCase().includes(searchFilterText.toLowerCase()));
+
+            if (filtered.length === 0) {
+                listContainer.innerHTML = `<div class="p-4 text-center text-xs text-slate-400">No contacts found</div>`;
+                return;
+            }
+
+            filtered.forEach(user => {
+                const isActive = user.id === activeTargetUser.id;
+                const html = `
+                    <div onclick="setActiveTarget('${user.id}')" class="p-3 flex items-center space-x-3 cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700/50 transition ${isActive ? 'bg-indigo-50/70 dark:bg-slate-700/70 border-r-4 border-brand-600' : ''}">
+                        <div class="relative shrink-0">
+                            <img src="${user.avatar}" class="w-12 h-12 rounded-full object-cover">
+                            <span class="w-3 h-3 bg-emerald-500 border-2 border-white dark:border-slate-800 rounded-full absolute bottom-0 right-0"></span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between mb-1">
+                                <h3 class="text-sm font-semibold truncate text-slate-900 dark:text-slate-100">${user.name}</h3>
+                            </div>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 truncate">${user.role}</p>
+                        </div>
+                    </div>
+                `;
+                listContainer.insertAdjacentHTML('beforeend', html);
+            });
+        }
+
+        window.setActiveTarget = function(targetId) {
+            const found = familyUsers.find(u => u.id === targetId);
+            if (!found) return;
+
+            activeTargetUser = found;
+            document.getElementById('activeName').innerText = activeTargetUser.name;
+            document.getElementById('activeAvatar').src = activeTargetUser.avatar;
+            document.getElementById('activeStatusText').innerText = `${activeTargetUser.role} • Online`;
+
+            const badge = document.getElementById('activeBadge');
+            if (activeTargetUser.role === 'Admin') badge.classList.remove('hidden');
+            else badge.classList.add('hidden');
+
+            renderContactList();
+            renderMessages();
+
+            if (window.innerWidth < 768) {
+                document.getElementById('sidebar').classList.add('-translate-x-full');
+            }
+        };
+
+        function renderMessages(filterQuery = '') {
+            const container = document.getElementById('messagesContainer');
+            container.innerHTML = '';
+
+            const convId = getConvId(currentUser.id, activeTargetUser.id);
+            const liveMessages = chatData[convId] || [];
+
+            const list = filterQuery ? liveMessages.filter(m => m.text && m.text.toLowerCase().includes(filterQuery.toLowerCase())) : liveMessages;
+
+            if (list.length === 0) {
+                container.innerHTML = `
+                    <div class="h-full flex flex-col items-center justify-center text-slate-400">
+                        <i class="fa-regular fa-comments text-4xl mb-2 opacity-50"></i>
+                        <p class="text-sm">No messages yet with ${activeTargetUser.name.split(' ')[0]}. Say hello!</p>
+                    </div>`;
+                return;
+            }
+
+            list.forEach(msg => {
+                const isMe = msg.senderId === currentUser.id;
+                let attachmentMarkup = '';
+
+                if (msg.attachment) {
+                    if (msg.attachment.type === 'image') {
+                        attachmentMarkup = `<img src="${msg.attachment.url}" class="rounded-xl max-w-xs mb-2 border border-slate-200 dark:border-slate-700 shadow-sm">`;
+                    } else if (msg.attachment.type === 'audio') {
+                        attachmentMarkup = `
+                            <div class="flex items-center space-x-3 bg-indigo-900/10 dark:bg-slate-900/40 p-2.5 rounded-xl mb-2 min-w-[200px]">
+                                <button type="button" onclick="this.querySelector('i').classList.toggle('fa-pause'); this.querySelector('i').classList.toggle('fa-play');" class="w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs">
+                                    <i class="fa-solid fa-play"></i>
+                                </button>
+                                <div class="flex-1">
+                                    <div class="h-1.5 w-full bg-slate-300 dark:bg-slate-600 rounded-full overflow-hidden">
+                                        <div class="h-full bg-brand-500 w-1/3"></div>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] text-slate-500">0:12</span>
+                            </div>`;
+                    } else {
+                        attachmentMarkup = `
+                            <div class="flex items-center space-x-2 bg-slate-100 dark:bg-slate-700 p-2 rounded-lg mb-2">
+                                <i class="fa-solid fa-file-pdf text-rose-500 text-lg"></i>
+                                <span class="text-xs font-medium truncate">${escapeHTML(msg.attachment.name)}</span>
+                            </div>`;
+                    }
+                }
+
+                const msgHtml = `
+                    <div class="flex ${isMe ? 'justify-end' : 'justify-start'}">
+                        <div class="max-w-[75%] sm:max-w-[65%] flex flex-col ${isMe ? 'items-end' : 'items-start'}">
+                            <div class="px-4 py-2.5 rounded-2xl text-sm shadow-sm ${
+                                isMe 
+                                    ? 'bg-brand-600 text-white bubble-sent' 
+                                    : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-200/80 dark:border-slate-700/80 bubble-received'
+                            }">
+                                ${attachmentMarkup}
+                                ${msg.text ? `<p class="leading-relaxed break-words">${escapeHTML(msg.text)}</p>` : ''}
+                            </div>
+                            <span class="text-[10px] text-slate-400 mt-1 px-1 flex items-center space-x-1">
+                                <span>${msg.time}</span>
+                                ${isMe ? '<i class="fa-solid fa-check-double text-brand-500 text-[10px]"></i>' : ''}
+                            </span>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', msgHtml);
+            });
+            container.scrollTop = container.scrollHeight;
+        }
+
+        window.handleSendMessage = function(e) {
+            e.preventDefault();
+            const input = document.getElementById('messageInput');
+            const text = input.value.trim();
+            if (!text && !currentAttachment) return;
+
+            const timeNow = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const newMsg = {
+                id: Date.now(),
+                senderId: currentUser.id,
+                senderName: currentUser.name,
+                text: text,
+                time: timeNow,
+                attachment: currentAttachment ? { ...currentAttachment } : null
+            };
+
+            const convId = getConvId(currentUser.id, activeTargetUser.id);
+            if (!chatData[convId]) chatData[convId] = [];
+            chatData[convId].push(newMsg);
+            
+            localStorage.setItem('ship_family_chats', JSON.stringify(chatData));
+
+            input.value = '';
+            window.removeAttachment();
+            document.getElementById('emojiPicker').classList.add('hidden');
+            renderMessages();
+        };
+
+        window.sendVoiceSim = function() {
+            const timeNow = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const newMsg = {
+                id: Date.now(),
+                senderId: currentUser.id,
+                senderName: currentUser.name,
+                text: '',
+                time: timeNow,
+                attachment: { type: 'audio', name: 'Voice Note' }
+            };
+
+            const convId = getConvId(currentUser.id, activeTargetUser.id);
+            if (!chatData[convId]) chatData[convId] = [];
+            chatData[convId].push(newMsg);
+
+            localStorage.setItem('ship_family_chats', JSON.stringify(chatData));
+            renderMessages();
+        };
+
+        window.handleFileSelect = function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const isImg = file.type.startsWith('image/');
+            currentAttachment = {
+                name: file.name,
+                size: (file.size / (1024 * 1024)).toFixed(2) + ' MB',
+                type: isImg ? 'image' : 'file',
+                url: isImg ? URL.createObjectURL(file) : null
+            };
+
+            const bar = document.getElementById('attachmentPreviewBar');
+            document.getElementById('previewFileName').innerText = file.name;
+            document.getElementById('previewFileSize').innerText = currentAttachment.size;
+            document.getElementById('previewIcon').innerHTML = isImg ? '<i class="fa-solid fa-image"></i>' : '<i class="fa-solid fa-file-pdf"></i>';
+            bar.classList.remove('hidden');
+        };
+
+        window.removeAttachment = function() {
+            currentAttachment = null;
+            document.getElementById('fileInput').value = '';
+            document.getElementById('attachmentPreviewBar').classList.add('hidden');
+        };
+
+        window.toggleEmojiPicker = function() {
+            document.getElementById('emojiPicker').classList.toggle('hidden');
+        };
+
+        window.insertEmoji = function(emoji) {
+            const input = document.getElementById('messageInput');
+            input.value += emoji;
+            input.focus();
+        };
+
+        window.toggleChatSearch = function() {
+            const bar = document.getElementById('inChatSearch');
+            bar.classList.toggle('hidden');
+            if (!bar.classList.contains('hidden')) {
+                document.getElementById('inChatSearchInput').focus();
+            } else {
+                renderMessages();
+            }
+        };
+
+        window.filterMessages = function(q) {
+            renderMessages(q);
+        };
+
+        window.handleSearch = function(val) {
+            searchFilterText = val;
+            renderContactList();
+        };
+
+        window.clearCurrentChat = function() {
+            const convId = getConvId(currentUser.id, activeTargetUser.id);
+            chatData[convId] = [];
+            localStorage.setItem('ship_family_chats', JSON.stringify(chatData));
+            renderMessages();
+        };
+
+        window.openUserSwitchModal = function() {
+            document.getElementById('userSwitchModal').classList.remove('hidden');
+        };
+
+        window.closeUserSwitchModal = function() {
+            document.getElementById('userSwitchModal').classList.add('hidden');
+        };
+
+        function renderUserSwitchModalChoices() {
+            const container = document.getElementById('userOptionsContainer');
+            container.innerHTML = '';
+
+            familyUsers.forEach(u => {
+                const isSelected = u.id === currentUser.id;
+                const html = `
+                    <div onclick="switchActiveUser('${u.id}')" class="p-3 rounded-2xl border ${isSelected ? 'border-brand-500 bg-brand-50 dark:bg-brand-900/20' : 'border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/40'} flex items-center justify-between cursor-pointer transition">
+                        <div class="flex items-center space-x-3">
+                            <img src="${u.avatar}" class="w-10 h-10 rounded-full object-cover">
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-900 dark:text-white">${u.name}</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">${u.role}</p>
+                            </div>
+                        </div>
+                        ${isSelected ? '<i class="fa-solid fa-circle-check text-brand-600 text-lg"></i>' : ''}
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+        }
+
+        window.switchActiveUser = function(userId) {
+            const user = familyUsers.find(u => u.id === userId);
+            if (!user) return;
+
+            currentUser = user;
+            updateCurrentProfileUI();
+            renderUserSwitchModalChoices();
+
+            if (activeTargetUser.id === currentUser.id) {
+                const available = familyUsers.find(u => u.id !== currentUser.id);
+                activeTargetUser = available;
+                document.getElementById('activeName').innerText = activeTargetUser.name;
+                document.getElementById('activeAvatar').src = activeTargetUser.avatar;
+                document.getElementById('activeStatusText').innerText = `${activeTargetUser.role} • Online`;
+            }
+
+            renderContactList();
+            renderMessages();
+            closeUserSwitchModal();
+        };
+
+        function updateCurrentProfileUI() {
+            document.getElementById('userAvatar').src = currentUser.avatar;
+            document.getElementById('userNameDisplay').innerText = currentUser.name;
+            document.getElementById('userRoleDisplay').innerText = currentUser.role;
+        }
+
+        window.triggerCall = function(type) {
+            document.getElementById('callAvatar').src = activeTargetUser.avatar;
+            document.getElementById('callName').innerText = activeTargetUser.name;
+            document.getElementById('callStatus').innerText = `Connecting ${type} call...`;
+            document.getElementById('callModal').classList.remove('hidden');
+        };
+
+        window.endCall = function() {
+            document.getElementById('callModal').classList.add('hidden');
+        };
+
+        function setupEventListeners() {
+            document.getElementById('openSidebarBtn').addEventListener('click', () => {
+                document.getElementById('sidebar').classList.remove('-translate-x-full');
+            });
+            document.getElementById('closeSidebarBtn').addEventListener('click', () => {
+                document.getElementById('sidebar').classList.add('-translate-x-full');
+            });
+        }
+
+        function setupTheme() {
+            const themeBtn = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+                themeIcon.className = 'fa-solid fa-sun';
+            }
+
+            themeBtn.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                if (document.documentElement.classList.contains('dark')) {
+                    themeIcon.className = 'fa-solid fa-sun';
+                } else {
+                    themeIcon.className = 'fa-solid fa-moon';
+                }
+            });
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+            }[tag] || tag));
+        }
+
+        window.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
